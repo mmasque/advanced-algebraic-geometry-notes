@@ -1,0 +1,31 @@
+\documentclass[12pt]{report}
+\usepackage{amsmath,amsthm,amssymb,color,latexsym, mathtools}
+\usepackage{latex-style/notes}
+
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xspace}
+\titleformat{\chapter}[hang]
+  {\normalfont\LARGE\bfseries} % Format of the text
+  {Lecture \thechapter:} % "Lecture X:" part
+  {0.5em} % Space between "Lecture X:" and chapter title
+  {\LARGE} % Chapter name font size
+
+\title{Lecture notes for the Mastermath course\\ \emph{Advanced algebraic geometry: moduli spaces of sheaves}}
+
+\author{Marcel Masque Salgado}
+\begin{document}
+\maketitle
+\tableofcontents
+\input{notes/week_1.tex}
+\input{notes/week_2.tex}
+\input{notes/week_3.tex}
+\input{notes/week_4.tex}
+\input{notes/week_5.tex}
+\appendix % TODO fix appendix formatting
+\input{notes/ag_recap.tex}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

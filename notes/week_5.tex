@@ -1,0 +1,134 @@
+\chapter{A result for elliptic curves, flatness}
+
+\section{A result for elliptic curves}
+Recall that a smooth projective curve $C$ is called \emph{elliptic} if $\omega_C \cong \OO_C$. 
+\begin{proposition}
+	Given a vector bundle $E$ on an elliptic curve $C$ with Harder-Narasimhan filtration $0 = E_0 \subset \dots \subset E_s = E$, we have $E \cong \oplus E_i/E_{i-1}$. 
+\end{proposition}
+\begin{proof}
+	We proceed by induction. If $s = 1$ we are done. 
+	Let $s > 0$. Assume the result holds for $s-1$. Then we quotient the filtration by $E_1$, obtaining \[
+    	0 \subset E_2/E_1 \subset \dots \subset E_{s-1}/E_1 \subset E_s/E_1.
+    \] In the lecture it was claimed without proof that this is a Harder-Narasimhan filtration (\todo{Why?}). This filtration has length $s-1$, and so we have \[E_s/E_1 \cong \oplus^s_{i=2} (E_i/E_1)/(E_{i-1}/E_1) \cong \oplus^s_{i=2} E_i/E_{i-1}.\]
+	Now consider the short exact sequence \[
+    	0 \to E_1 \to E \to E/E_1 \to 0.
+    \] We claim this extension is trivial (i.e. it splits). This is true if $\ext^1(E/E_1, E_1) = 0$ (by an exercise in week 1). But the $\Ext^1$ functor commutes with direct sums so \[
+    	\ext^1(E/E_1, E_1) = \sum \ext^1(E_i/E_{i-1}, E_1).
+    \] By Serre duality \todo{why?} this is $\sum \hom(E_1, \omega_C \otimes E_i/E_{i-1})$. Since we are on an elliptic curve our sum is just $\sum \hom(E_1, E_i/E_{i-1})$ and since $\mu(E_1) > \mu(E_i/E_{i-1})$ this is $0$.
+\end{proof}
+\section{Flatness}
+We will talk about flatness in the context of commutative algebra and in the context of schemes. 
+
+\subsection{Commutative algebra}
+\begin{definition}\label{def:flatness}
+	Let $M \in \Mod_A$ be a module over a commutative ring $A$. We say $M$ is \emph{flat} if $-\otimes_A M$ is exact. Note that $-\otimes_A M$ is always right exact (left adjoint to $\Hom$) so to be flat is to preserve injections under tensoring.
+\end{definition}
+
+\begin{definition}
+\label{def:flatmap}
+	A morphism $\phi: A \to B$ is \emph{flat} if $B$ is flat as an $A$-module.
+\end{definition}
+
+\begin{proposition}
+	The following are equivalent: 
+	\begin{enumerate}
+    	\item For all ideals $I \subset A$ the map $I \otimes_A M \to M$ (obtained by applying $-\otimes_A M$ to $I \hookrightarrow A$) is injective,
+		\item $\Tor^A_1(A/I, M) = 0$,
+		\item $\Tor^A_1(-, M) = 0$,
+		\item $\Tor^{A}_i(-, M) = 0$ for all $i > 0$. 
+    \end{enumerate}
+\end{proposition}
+In fact, it is sufficient to check this on finitely generated ideals.
+
+\begin{example}\label{ex:free-flat}
+	Free modules are flat.
+\end{example}
+\begin{proposition}\label{prop:flatness-base-change}
+	Flatness is preserved under base change (pushouts).
+\end{proposition}
+\begin{proposition}\label{prop:flat-over-noeth-loc-free}
+	Let $M \in \Mod_A$ be a finitely generated flat module over a Noetherian ring $A$. Then $M$ is locally free. If $A$ is also a local ring then $M$ is free. 
+\end{proposition}
+\begin{proof}
+	We prove the local case. Let $k(m) = A/m$. The module $M \otimes_A A/m \cong M/mM $ is a vector space over $k(m)$. Pick a basis $(\overline{m_1}, \dots, \overline{m_r})$ for $M/mM$ and write 
+	\[
+    	M = (m_1, \dots, m_r) + mM.
+    \] Nakayama's lemma now tells us that $M \cong (m_1, \dots, m_r)$ as vector spaces over $k(m)$. 
+	Since $M$ is finitely generated as an $A$ module, we have a short exact sequence \[
+    	0 \to K \to E \to M \to 0
+    \] for $E = A_{e_1} \dots A_{e_r}$ with $e_i \mapsto m_i$.
+	Tensoring with $k(m)$ we obtain the sequence \[
+    	0 \to K \otimes k(m) \to k(m)^{\oplus r} \to M \otimes k(m) \to 0
+    \] of $k(m)$ modules since $\Tor_1(M, k(m)) = 0$ by flatness of $M$.
+	 But the map $k(m)^{\oplus r} \to M/m \otimes k(m)$ is an isomorphism, so $K \otimes k(m) = K / mK 0$. Thus $K = mK$ and by Nakayama's lemma $K = 0$ and thus $M$ is free.
+\end{proof}
+
+\begin{proposition}
+	Let $S \subset A$ be a multiplicatively closed set (with $1 \in S$). Then the map $A \to S^{-1}A$ is flat. 
+\end{proposition}
+
+\begin{proposition}[Flatness is local]\label{prop:flatness-is-local}
+	A module $M \Mod_A$ is flat if and only if $M_p$ is flat for all $p\subset A$ prime if and only if $M_m$ is flat for all $m\subset A$ maximal.
+	A morphism of rings $\phi: A \to B$ is flat if and only if for all $q \subset B$ prime such that $\phi^{-1}(q) = p$ is prime, the localisation $B_p$ is flat over $A_p$. 
+\end{proposition}
+
+\subsection{Schemes}
+In this section, the names of definitions, theorems, propositions, etc link to the relevant commutative algebra counterparts.
+
+Let $(X, \OO_X)$ be a scheme.
+\begin{definition}[{\cref{def:flatness}}]
+	Let $\sh{F} \in \operatorname{QCoh}(X)$. We say $\sh{F}$ is \emph{flat} if the functor $-\otimes_{\OO_X} \sh{F}$ is exact.
+\end{definition}
+
+\begin{definition}[{\cref{def:flatmap}}]
+	We call a map of schemes $f: X \to Y$ \emph{flat} if for all $x \in X$ the induced map $f^*: \OO_{Y, f(x)} \to \OO_{X, x}$ is flat.
+\end{definition}
+
+\begin{proposition}
+	Let $f: X \to Y$ be a flat morphism of schemes, and let 
+	\[
+    	0 \to \sh{F}' \to \sh{F} \to \sh{F}'' \to 0
+    \]
+	be a short exact sequence in $\operatorname{QCoh}(X)$. Then the sequence \[
+    	0 \to f^*\sh{F}' \to f^*\sh{F} \to f^*\sh{F}''\to 0
+    \] is exact.
+\end{proposition}
+\begin{proof}
+	The pullback functor is a left adjoint so it is right exact.
+	So we need to show $f^*\sh{F}' \to f^*\sh{F}$ is injective. Taking stalks at $x \in X$ this becomes \[\sh{F'}_{f(x)} \otimes_{\OO_X,x} \OO_{Y, f(x)} \to \sh{F}_{f(x)} \otimes_{\OO_X, x} \OO_{Y, f(x)}\] and this is injective because $O_{Y, f(x)}$ is flat over $\OO_{X,x}$. 
+\end{proof}
+
+\begin{example}[{\cref{ex:free-flat}}]
+	Any scheme over $k$ is flat. 
+\end{example}
+
+\begin{proposition}[{\cref{prop:flatness-base-change}}]
+	The base change of a flat map of schemes is flat.
+\end{proposition}
+
+\begin{proposition}
+	Let $f: X \to Y$ be a morphism of schemes.
+	\begin{enumerate}[label=(\alph*)]
+		\item If $f$ is an open immersion then $f$ is flat.
+		\item If $f$ is flat, it is open.
+		\item The set $\{x \in X \mid O_{Y, f(x)} \to O_{X, x} \text{ flat }\}$ is open.
+    \end{enumerate}
+\end{proposition}
+\begin{proposition}[\cref{prop:flat-over-noeth-loc-free}]
+	Let $\sh{F}$ be a coherent sheaf on a Noetherian scheme $X$. Then $\sh{F}$ is locally free if and only if it is flat. 
+\end{proposition}
+
+We now come to the big theorem of the day, the proof of which I didn't understand and will add later, hopefully.
+
+\begin{theorem}
+	Let $f: X \to Y$ be a surjective flat morphism of locally Noetherian schemes and suppose $Y$ is reduced and connected. 
+	Then for all $x \in X$ (writing $y = f(x)$) we have \[
+    	\dim \OO_{X_y, x} = \dim \OO_{X, x} - \dim \OO_{Y, y}
+	\footnote{Dimension is here \emph{Krull} dimension.}.\]
+\end{theorem}
+\begin{proof}
+	\todo{Understand, write}.
+\end{proof}
+\begin{theorem}[Miracle flatness]
+	Let $f: X \to Y$ be a map with equidimensional fibers and $Y$ nonsingular/regular/smooth over $k = \overline{k}$ (when $k \neq \overline{k}$ the definitions of nonsingular, regular, and smooth schemes do not coincide and the right definition is regular). Suppose $X$ is Cohen-Macaulay \cite[\href{https://stacks.math.columbia.edu/tag/02IN}{Tag 02IN}]{stacks-project}. Then $f$ is flat. 
+\end{theorem}

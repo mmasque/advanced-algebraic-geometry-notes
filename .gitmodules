@@ -1,0 +1,3 @@
+[submodule "latex-style"]
+	path = latex-style
+	url = git@github.com:mmasque/latex-style.git

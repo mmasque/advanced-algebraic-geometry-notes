@@ -1,0 +1,162 @@
+\chapter{Semistability in higher dimensions}
+
+\section{Pure sheaves}
+
+Let $\sh{F}$ be a coherent sheaf on a (locally) Noetherian scheme $X$. 
+
+\begin{definition}
+	The support of $\sh{F}$ is the set $\Supp(\sh{F}) = \{x \in X: \sh{F}_x \neq 0\}$.
+	One can show this is the underlying set of a closed subscheme of $X$. Its topological dimension is called the \emph{dimension of the sheaf} $\sh{F}$, denoted $\dim(\sh{F})$.
+\end{definition}
+
+\begin{definition}
+	A sheaf is pure of dimension $d$ if all of its nonzero subsheaves have dimension $d$. 
+\end{definition}
+
+\begin{problem}
+	If $j: Y \to X$ is an integral closed subscheme, then the pushforward $j_* \OO_Y$ is pure of dimension $\dim j_*\OO_Y = \dim Y$. 
+\end{problem}
+
+\subsection{Torsion}
+Assume now that $X$ is also integral. 
+
+\begin{definition}
+	The \emph{torsion subsheaf} $E_{\Tors}$ 
+	of a coherent sheaf $E$ is defined on opens by \[E_{\Tors}(U) = \{s \in E(U) \mid as = 0 \text{ for } a \in \OO_X(U)\}.\] We say $E$ is \emph{torsion free} if $E_{\Tors} = 0$, and \emph{torsion} if $E = E_{\Tors}$. 
+\end{definition}
+Note that $E/E_{\Tors}$ is torsion free \todo{Why?} 
+
+\begin{problem}\label{problem:support-torsion}
+	Show that $\Supp(E) = X$ if and only if $E_{\Tors}$ is a proper subsheaf of $E$. 
+\end{problem}
+
+From \cref{problem:support-torsion} we see that for an inclusion $F \subset E$, we have $\Supp(F) \subsetneq X$ if and only if $F \subset E_{\Tors}$, because $F \subset E_{\Tors}$ if and only if $F_{\Tors}$ is not a proper subsheaf of $F$. Now note that $\Supp(F) \subsetneq X$ means that $\dim(F) < \dim(X)$. Since $E_{\Tors} \subset E_{\Tors}$ (!) we know that the torsion subsheaf has strictly lower dimension than $X$, and any other subsheaf of $E$ with lower dimension than $X$ must be a subsheaf of $E_{\Tors}$. We obtain the following corollary. 
+
+\begin{corollary}\label{cor:torsion-free-iff-pure-dim-X}
+	$E$ is torsion-free if and only if it is pure of dimension $\dim(X)$. 
+\end{corollary}
+\begin{proof}
+	If $E$ is torsion-free, then it has dimension $\dim(X)$. Any nonzero subsheaf of $E$ is torsion free as well, and thus has dimension $\dim(X)$. Conversely, if $E$ is pure of dimension $\dim(X)$, its torsion subsheaf must vanish, since it has lower dimension.
+\end{proof}
+
+\begin{corollary}
+	Let $j: Y \to X$ be an integral closed subscheme, let $F$ be torsion free on $Y$. Then $j_*F$ is pure of dimension $\dim(Y)$. Moreover, every pure sheaf on $X$ supported on an integral closed subscheme is of this form. 
+\end{corollary}
+\begin{proof}[Sketch of proof]
+	Use that the pushforward $j_*$ on quasicoherent sheaves is exact and fully faithful, with essential image those sheaves $\sh{G}$ such that $\sh{I}\sh{G} = 0$ \cite[\href{https://stacks.math.columbia.edu/tag/01QX}{Tag 01QX}]{stacks-project}.
+\end{proof}
+
+\begin{problem}
+	If $E$ is a torsion free sheaf, there exists a non-empty open $U$ such that $E|_U$ is locally free.
+\end{problem}
+
+\subsection{Saturated sheaves}
+
+\begin{definition}
+	A subsheaf $F \subset E$ is \emph{saturated} if $E/F$ is pure of dimension $\dim(E)$ or $0$. The \emph{saturation} of $F$ in $E$ is the minimal saturated subsheaf $F' \subset E$ containing $F$. 
+\end{definition}
+
+\todo{Understand the below:}
+
+We should make sure the things we define exist. Let's check the saturation exists. Suppose $F$ is not saturated, and let $T \subset E/F$ be the maximal subsheaf whose dimension is lower than $\dim(E)$ (\todo{why does this exist?}). Then define \[
+	F' = \ker(E \to E/F \to (E/F)/T).
+\] 
+Letting now $A \subset E/F'$ be a nonzero subsheaf with dimension less than $\dim(E)$, we note $E/F' \cong (E/F)/T$, and the corresponding preimage subsheaf of $A$ in $E/F$ strictly contains $T$, so its dimension is $\dim(E)$ by maximality of $T$. 
+
+Also, note that $F'/F$ has dimension less than $\dim(E)$. 
+\begin{problem}
+	Let $X$ be a nonsingular curve. Then $E$ coherent is torsion free if and only if it is locally free. Thus, if $F \subset E$ is a subsheaf of a locally free sheaf, and $F$ is saturated, then $E/F$ is locally free. 
+\end{problem}
+\begin{proof}[Of the second part]
+	The quotient $E/F$ is pure of dimension $\dim(E)$ or $0$. If $0$, then we are done. If $\dim(E)$ then by \cref{cor:torsion-free-iff-pure-dim-X} $E$ is torsion free. Thus the quotient is locally free. We didn't even use that $E$ is locally free. 
+\end{proof}
+
+\section{Gieseker (semi)stability}
+Let $X$ be a projective scheme over a field $k$. Fix an ample line bundle $\OO(1)$. 
+
+\begin{proposition}
+	The Hilbert polynomial is additive.
+\end{proposition}
+
+\begin{proposition}
+	Let $E$ be a coherent scheme. We can write the Hilbert polynomial as \[
+    	P(E, m) = \sum_{i=0}^{\dim(E)} \alpha_i(E) m^i/i!
+    \] for $\alpha_i(E) \in \QQ$.
+\end{proposition}
+The above was not proved in the lecture. It was claimed that the $\alpha_i$ are easy to find in examples.
+\begin{definition}
+	The top coefficient, $\alpha_{\dim(E)}(E)$ of the Hilbert polynomial is called the \emph{multiplicity} of $E$. 
+\end{definition}
+
+\begin{definition}
+	The \emph{reduced Hilbert polynomial} of $E$ is given by \[p(E,m) = P(E,m)/\alpha_{\dim(E)}(E).\]
+\end{definition}
+
+\begin{definition}
+	A pure sheaf $E$ on $X$ is \emph{Gieseker semistable} if for any subsheaf $F \subset E$, we have $p(F) \leq p(E)$ lexicographically. If the equality is strict for all subsheaves, we say $E$ is \emph{Gieseker stable}.
+\end{definition}
+
+\begin{proposition}[{\cite[Prop 1.2.6]{huybrechts2010geometry}}]
+	Let $E$ be a pure sheaf of dimension $d$. The following are equivalent. 
+	\begin{enumerate}[label=(\roman*)]
+    	\item $E$ is (semi)stable,
+		\item $p(F) (\leq) p(E)$ for all saturated proper subsheaves $F \subset E$,
+		\item for all proper quotient sheaves $F \to G$ with $\alpha_\phi(G) > 0$, $p(E) (\leq) p(G)$, 
+		\item for all proper purely $d$-dimensional quotients $E \to G$ on has $p(E) (\leq) p(G)$. 
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+	(ii) $\implies$ (i): let $F \subset E$ be a proper subsheaf. Take its saturation $F \subset F'$. Then $P(F') = P(F) + P(F'/F)$ and $\dim(F'/F) < d$.  
+	So the degree of $P(F'/F)$ is less than $d$, and therefore the top coefficients of $P(F')$ and of $P(F)$ are the same. 
+	It is a fact in \cite{huybrechts2010geometry} that the top coefficeint of the Hilbert polynomial is always nonnegative. In particular $P(G) \geq 0$ for any $G$. So $P(F') \geq P(F)$, and dividing through by the same coefficient means $p(F') \geq p(F)$. This proves the implication. 
+	
+	The rest of the proof in the book, or in handwritten notes.
+\end{proof}
+
+\begin{example}
+	We check that line bundles are always stable. Let $L$ be a line bundle. It is pure of dimension $\dim(X)$ because it is torsion-free (integral scheme, so structure sheaf rings are domains; torsion-free, so we have torsion free on an affine cover, \dots).
+	Let $L' \subset L$ be a saturated subsheaf. Then $Q=L/L'$ is has dimension $0$ or $\dim(L) = \dim(X)$, so $Q$ is torsion free.
+	Now if $Q$ is nonzero there exists $\emptyset \neq U$ open such that $Q|_U$ is locally free of rank 1. The map \[
+    	L|_U \to Q|_U
+    \] is a surjective map between locally free sheaves and so must be an isomorphism. Now \[L' = \ker(L \to Q)\] is thus supported on $X\setminus U$ so $L$ is not torsion free, a contradiction to $L$ being pure. We conclude that $L$ has no nontrivial saturated subsheaves. 
+\end{example}
+
+We now want to relate Gieseker (semi)stability to our notion of semistability on curves. 
+\begin{example}[Recovering semistabiliy on curves]
+For a locally free sheaf $E$ on a smooth curve $X$, we have \[
+	\chi(E(m)) = m \cdot \rk(E) + \deg(E) + \rk(E)(1-g(X))
+\] by an exercise. We are on a curve so $d = 1$ and $\alpha_d(E) = \rk(E)$. Dividing through by this coefficient we obtain the reduced Hilbert polynomial \[
+	p(E) = m + \mu(E) + (1-g(X)).
+\] Thus $E$ is Geiseker (semi)stable if and only if for all saturated proper subsheaves $F \subset E$ we have $\mu(F) (\leq) \mu(E)$. 
+\end{example}
+
+A nice property of the category of semistable sheaves on a space is that in some sense it has `few' morphisms.
+\begin{proposition}[{\cite[Prop~1.2.7]{huybrechts2010geometry}}]
+	Let $F, G$ be semistable sheaves of dimension $d$. 
+	\begin{enumerate}[label=(\roman*)]
+    	\item If $p(F) > p(G)$ there are no nonzero morphisms $F \to G$.
+		\item If $p(F) = p(G)$ and $f: F \to G$ is nontrivial then $f$ is injective if $F$ is stable and surjective if $G$ is stable.
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}[{\cite[Cor~1.2.8]{huybrechts2010geometry}}]
+	If $E$ is stable then $\End(E)$ is a finite dimensional division algebra over $k$. If $E$ is algebraically closed then $\End(E) \cong k$. In such a case we say $E$ is \emph{simple}.
+\end{corollary}
+
+\section{The Harder-Narasimhan filtration}
+The slogan of this section is that \emph{semistable sheaves are building blocks for pure sheaves}.
+\begin{definition}
+	Let $E$ be a pure sheaf of dimension $d$. A Harder-Narasimhan filtration of length $l$ for $E$ is an increasing filtration \[
+    	0 = \HN_0(E) \subset \HN_1(E) \subset \dots \subset \HN_l(E) = E
+    \] such that the \emph{graded pieces} $\gr_i = \HN_i(E)/\HN_{i-1}(E)$ are semistable of dimension $d$ with decreasing hilbert polynomials $p_i$: \[
+    	 p_{\text{max}} = p_1 > p_2 > p_3 > ... > p_l = p_{\text{min}}.
+    \]
+\end{definition}
+
+\begin{theorem}[{\cite[Thm~1.3.4]{huybrechts2010geometry}}]
+	Every pure sheaf $E$ has a unique Harder-Narasimhan filtration.
+\end{theorem}
+The proof is long, but here is an ingredient.
+\begin{lemma}[Maximal destabilizing subsheaf]
+	Let $E$ be a pure sheaf. Then there exists a subsheaf $F \subset E$, called the \emph{maximal destabilizing subsheaf} of $E$, such that for all other $G \subset E$ one has $p(F) \geq p(G)$ and if $p(F) = p(G)$ then $G \subset F$. Moreover $F$ is unique and semistable.
+\end{lemma}

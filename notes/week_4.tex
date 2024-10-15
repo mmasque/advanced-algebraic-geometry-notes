@@ -1,0 +1,27 @@
+\newcommand{\holder}{Hölder\xspace}
+\chapter{Jordan-\holder filtrations}
+\todo{For now I skip typing the proof of existence and uniqueness of Harder-Narasimhan filtrations, which was the first half of the lecture}.
+\newline
+\todo{I also skip the proof of the following fact:}
+
+\begin{example}
+	The cotangent bundle $\Omega_{\PP^n}$ is semistable (in fact, it's stable).
+\end{example}
+
+\section{Jordan-\holder filtrations}
+The slogan of this section is that \emph{every semistable sheaf can be build (non-uniquely) from stable sheaves}.
+
+\begin{definition}
+	Let $E$ be a semistable sheaf of dimension $d$. A \emph{Jordan-\holder} filtration of $E$ is a filtration \[
+    	0 = E_0 \subset E_1 \subset \dots \subset E_l = E
+    \] with stable graded pieces that all have the same reduced Hilbert polynomial.
+\end{definition}
+\begin{rmk}
+	Such a filtration is not unique. For example for $C$ a smooth curve, and $L,M$ non-isomorphic line bundles of the same degree on $C$, the filtrations $0 \subset L \subset L \oplus M$ and $0 \subset M \subset L \oplus M$ are different. But notice that the sum of the graded pieces is the same!
+\end{rmk}
+
+\begin{theorem}
+	Any semistable sheaf has a Jordan-\holder filtration, and up to isomorphism the sheaf \[
+    	\gr(E) := \bigoplus gr_i(E)
+    \] is unique.
+\end{theorem}

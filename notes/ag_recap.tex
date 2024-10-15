@@ -1,0 +1,62 @@
+\chapter{Some concepts from algebraic geometry}
+
+\section{Projective space as a scheme}
+We use the following notation throughout the section.
+\begin{notation}
+	Introduce variables $X_{ij}$ for $0 \leq i,j \leq n$ and $i \neq j$ and set \[
+    	R_{i} = \ZZ[..., X_{ki}, ...]_{k=0,...,n, k\neq i}, U_i = \Spec R_i
+    \] for $i = 0,...,n$.
+	Note that $U_i$ are all isomorphic to $\Aa^n_\ZZ$. 
+	Now set 
+	\[
+    	R_{ji} = \ZZ[\dots, X_{ki}, \dots, X_{ji}^{-1}]_{k=0,\dots,n, k\neq i}, U_{ji} = \Spec R_{ji}.
+    \] The point is that $U_{ij} = (U_i)_{X_{ji}}$.
+\end{notation}
+We are going to glue the $U_i$ along the $U_{ij}$ to construct projective space. 
+\begin{proposition}
+	The maps $\phi_{ij}: R_{ji} \to R_{ij}$ given by $X_{ji} \mapsto X_{ij}^{-1}$, $X_{ki} \mapsto X_{kj} \cdot X_{ij}^{-1} (j \neq k)$ are isomorphisms of rings, and they induce sheaf isomorphisms $\varphi_{ij}: U_{ij} \to U_{ji}$. 
+\end{proposition}
+Some intuition for the maps in the above proposition is to think of $R_i$ as the ring $\ZZ[..., {X_k}/{X_i}, ...]_{k\neq i}$ ($R_i$ is indeed isomorphic to this ring). Now the isomorphism $\phi_{ij}$ acts as a change of denominator from $X_i$ to $X_j$. 
+
+\begin{proposition}
+	One can glue the $U_i$ along the $U_{ij}$ by way of the maps in the above proposition to obtain a scheme.
+\end{proposition}
+
+\section{A recap of the tilde construction}
+The main goal being the definition of the twisting (twisted?) sheaves on projective space.
+\begin{definition}[Tilde module]
+	Let $X = \Spec R$ be a sheaf and $M$ be an $\OO_X(X) = R$-module.
+	We define $\widetilde{M}(X_f) = M_f$. 
+\end{definition}
+
+\begin{definition}[Graded module]
+	Let $S$ be a graded ring. A graded $S$-module $M$ is an $S$ module with a direct sum decomposition \[
+    	M = \bigoplus_{e\in\ZZ}M_e
+    \] into $\ZZ$ modules such that for all $d \in \ZZ_{\geq 0}$, we have $S_d \cdot M_e \subset M_{d+e}$. 
+\end{definition}
+
+\begin{notation}[Used in the rest of the section]
+	Let $A$ be a ring, let $S = A[X_0, \dots, X_r]$ and let $M$ be a graded $S$ module. Let $X = \PP^n_A$. We set \[R_i = A[..., X_{ki}, ...]_{k\neq i},\] generalising the notation we used to define projective space. 
+
+	We have maps $\phi_i: R_i \to S_{X_i}$ defined by $\phi_i: X_{ki} \mapsto X_i^{-1} \cdot X_k$.
+\end{notation}
+\begin{rmk}
+	We have $S_{X_i} \cong R[X_i, X_{i}^{-1}]$ as rings. Furthermore, we have $(S_{X_i})_0 \cong R_i$. 
+\end{rmk}
+
+\begin{definition}[Graded tilde module]
+	Consider $(M_{X_i})_0$, the zeroeth degree component of $M_{X_i}$, the module $M$ localized at $X_i$. This is an $(S_{X_i})_0$ module, i.e. an $R_i$ module. We put $\widetilde{M}|_{U_i} = \widetilde{(M_{X_i})_0}$. Glue along the overlaps $U_i \cap U_j$ (details omitted). The resulting sheaf is a quasi-coherent $\OO_X$ module. Actually, every quasi-coherent sheaf arises from such a tilde construction.
+\end{definition}
+
+\begin{definition}[Twisting sheaf $\OO_{\PP^n}(d)$]
+	Fix $n \in \ZZ_{> 0}$. There are two definitions that coincide. 
+	\begin{enumerate}
+    	\item Set $\OO_X(d)|_{U_i} = \widetilde{R_i \cdot X^d_i}$ and glue. 
+		\item Set $M = S(d)$, the shift of $S$, where the module is $S$ itself, but the grading is $S(d)_e = S_{d+e}$. 
+		We see that $(S(d)_{X_i})_0 = \{f/X_i^k \mid f \in S_{d+k}\}$. But by multiplying the fraction $f/X_{i}^k$ by $X_{i}^d/X_{i}^d$ we see that we have all elements of the form $f/X_i^{d+k} \cdot X_i^d$ with $f \in S_{d+k}$ and letting $e = d+k$ we see that we have all elements of the form $f/X_i^e \cdot X_i^d$. That is, we have $(S_{X_i})_0 \cdot X_i^d$, which is just $R_i \cdot X_i^d$. 
+
+		All this to say that now we can define $\OO_X(d) = \widetilde{S(d)}$, because $\widetilde{(S(d)_{X_i})_0} = \widetilde{R_i \cdot X_i^d}$. 
+    \end{enumerate}
+\end{definition}
+
+
