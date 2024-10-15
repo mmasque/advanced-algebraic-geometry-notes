@@ -1,0 +1,98 @@
+\ProvidesPackage{notes}
+\usepackage{soul}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{tikz-cd}
+\usepackage{hyperref}
+\usepackage{cleveref}
+% \usepackage[adobe-utopia]{mathdesign}
+\usepackage[T1]{fontenc}
+\usepackage{eulervm}
+
+\tikzcdset{arrow style=math font}
+
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\RR}{\field{R}} % real numbers
+\newcommand{\NN}{\field{N}} % natural numbers
+\newcommand{\CC}{\field{C}} % complex numbers
+\newcommand{\ZZ}{\field{Z}} % integers
+\newcommand{\QQ}{\field{Q}} % rationals
+\newcommand{\FF}{\field{F}} % field
+\newcommand{\Aa}{\field{A}} % affine space
+\newcommand{\PP}{\field{P}} % projective
+
+\newcommand{\inv}{^{-1}} % inverse
+\newcommand{\defeq}{\vcentcolon=} % definition
+\newcommand{\OO}{\mathcal{O}}
+
+%categories
+\newcommand{\cat}[1]{\mathbf{#1}}
+\newcommand{\catSet}{\cat{Set}}
+\newcommand{\catSch}{\cat{Sch}}
+\newcommand{\catCRing}{\cat{CRing}}
+\newcommand{\catMod}{\cat{catMod}}
+\newcommand{\Mod}{\cat{Mod}}
+
+% Opposite category
+\newcommand{\opp}{^{\operatorname{op}}}
+% Sheaf related commands
+% poset of opens
+\newcommand{\open}{\operatorname{Open}}
+% continuous maps
+\newcommand{\cont}{\operatorname{Cont}}
+% constant sheaf
+\newcommand{\constSheaf}[1]{\underline{#1}}
+
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\ext}{\operatorname{ext}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\id}{\operatorname{id}}
+% Algebraic geometry
+\newcommand{\Spec}{\operatorname{Spec}} 
+\newcommand{\sh}[1]{\mathcal{#1}}
+\newcommand{\ch}{\operatorname{ch}}
+\newcommand{\td}{\operatorname{td}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\Tors}{\operatorname{Tors}}
+\newcommand{\HN}{\operatorname{HN}}
+\newcommand{\gr}{\operatorname{gr}}
+
+% Ugly!
+\makeatletter
+\@ifclassloaded{report}{%
+    \def\theoremnumbering{chapter}%
+}{%
+    \def\theoremnumbering{section}%
+}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[\theoremnumbering]
+\newtheorem{proposition}{Proposition}[\theoremnumbering]
+\newtheorem{lemma}{Lemma}[\theoremnumbering]
+\newtheorem{corollary}{Corollary}[\theoremnumbering]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[\theoremnumbering]
+\newtheorem{rmk}{Remark}[\theoremnumbering]
+\newtheorem{example}{Example}[\theoremnumbering]
+\newtheorem{notation}{Notation}[\theoremnumbering]
+
+\newtheorem{problem}{Problem}[\theoremnumbering]
+\newtheorem{problemnochapter}{Problem}
+\newtheorem*{problem*}{Problem}
+\makeatother
+% problem environments
+% use problem for automatic numbering, manualproblem
+% to manually number
+% \newtheorem{manualprobleminner}{Problem}
+% \newenvironment{manualproblem}[1]{
+%   \renewcommand\themanualprobleminner{#1}
+%   \manualprobleminner
+% }{\endmanualprobleminner}
+
+% TODO
+\newcommand{\todo}[1]{\hl{TODO:\@ #1}}
