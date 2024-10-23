@@ -28,3 +28,46 @@ The proof is written out in full in Hartshorne. It uses the following theorems b
 \end{proof}
 
 \section{Castelnuovo-Mumford regularity}
+
+\begin{definition}
+	Let $X$ be a smooth projective variety with $\OO_X(1)$ an ample, basepoint-free (i.e. globally generated) $\OO_X$ module. Then a coherent sheaf $\sh{F}$ on $X$ is \emph{$m$-regular} for $m \in \ZZ$ if \[
+    	H^i(X, \sh{F}(m-i)) = 0 
+    \] for all $i > 0$. 
+\end{definition}
+
+\begin{theorem}
+	Let $\sh{F}$ be an $m$-regular sheaf on $X$.
+	\begin{enumerate}
+    	\item $\sh{F}(m)$ is globally generated.
+		\item For all $k > 0$ the map \[
+        	H^0(X, \sh{F}(m)) \otimes H^0(\OO_X(k)) \to H^0(\sh{F}(m+k))
+        \] is surjective.
+		\item If $\sh{F}$ is $m$-regular it is also $m'$-regular for all $m' > m$.
+    \end{enumerate}
+\end{theorem}
+
+The following theorem is only here because we will use it in the next example. But it is nice to know. 
+\begin{theorem}[Kodaira Vanishing Theorem, {\cite[Remark~III.7.15]{hartshorne2013algebraic}}]
+	Let $X$ be a projective nonsingular variety of dimension $n$ over $\CC$, and let $\sh{L}$ be an ample invertible sheaf on $X$. Then \begin{enumerate}
+    	\item $H^i(X, \sh{L}\otimes \omega) = 0$ for $i > 0$;
+		\item $H^i(X, \sh{L}^{-1}) = 0$ for $i < n$. 
+    \end{enumerate}
+\end{theorem}
+It's also good to recall Grothendieck's vanishing theorem (one of?).
+\begin{theorem}[Grothendieck {\cite[Theorem~2.7]{hartshorne2013algebraic}}]
+	Let $X$ be a noetherian topological space of dimension $n$. Then for all $i > n$ and all sheaves of abelian groups $\sh{F}$ on $X$, we have $H^i(X, \sh{F}) = 0$. 	
+\end{theorem}
+
+\begin{example}
+	For $X = \PP^n_\CC$ and $\sh{F} = \OO(l)$, 
+	we are interested in the values of $m$ that make $\sh{F}$ $m$-regular. If $i > n$ then the cohomology vanishes. 
+	If $i = n$ we have \[
+    	H^n(X, \OO(l + m - n)) = H^0(X, \OO(-l-m + n -n-1))
+    \]
+	by Serre duality and that $\omega = \OO(-n-1)$ (see the reference in the proof of \cite[Theorem~III.7.1]{hartshorne2013algebraic}).
+	This vanishes iff $m > -l-1$. Assuming this bound now, we claim 
+	If $0 < i \leq n$ the cohomology also vanishes.
+	Write $l + m - i = a - n - 1$ for $a = l+m-i+n+1 > 0$. 
+	Then we have $H^i(X, \OO(l+m-i)) = H^i(\OO(a) \otimes \omega)$ and $\OO(a)$ is ample since $a > 0$, so we can apply Kodaira's Vanishing theorem.
+\end{example}
+
