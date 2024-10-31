@@ -1,0 +1,91 @@
+\chapter{Grassmannians and Quot schemes}
+The lecturer this week was Emma Brakkee.
+
+In this lecturer we will make the following precise. For $0 < d < n$ and $V$ an $n$-dimensional $k$-vector space, the \emph{Grassmanian} $\Gr(d, V)$ is a variety over $k$ which parameterises the $d$-dimensional subspaces of $V$. What does it mean to parameterize the set of $d$-dimensional subspaces of $V$? To start, there needs to be a bijection between the Grassmanian $\Gr(d, V)$ and the set $A$ of $d$-dimensional subspaces of $V$. 
+
+% Temporary place to put some thoughts down
+\section{Constant sheaves from vector spaces}
+Let $X$ be a $k$-scheme and $V$ a $k$-vector space.
+Then we can put the constant sheaf $\underline{V}$ of vector spaces (\emph{not} an $\OO_X$-module) on $X$ by attaching $V$ to each open and sheafifying.
+We can then construct the sheaf $\OO_X \otimes \underline{V}$ by sheafifying the presheaf \[
+	(\OO_X \otimes_{\operatorname{pre}}\underline{V})(U) := \OO_X(U) \otimes_k V.
+\]
+This \emph{is} an $\OO_X$-module. The common abuse of notation is then to omit the underline and write $\OO_X \otimes V$.
+The sheaf $\OO_X \otimes V$ can also be seen as the pullback $\rho^* V$ of the $\OO_{\Spec k}$-module $V$ along $\rho: X \to \Spec k$. This is defined to be the sheafification of the presheaf \[
+	\rho^{*,\operatorname{pre}}V(U) =  \OO_X(U) \otimes_{\rho^{-1}\OO_{\Spec k}(U)}(\rho^{-1}V)(U),
+\] and I claim that's the same as the sheafification of the presheaf $\OO_X \otimes_{\operatorname{pre}} V$. 
+It's definitely true for $V$ a finite dimensional vector space, because then by identifying $V \cong k^n$ both sheaves become $\OO_X^{\oplus n}$ (finite direct sums commute with pullback).
+In fact any direct sum commutes with the pullback so it should also be true for vector spaces of infinite dimension.
+
+\section{The Plücker embedding}
+\begin{definition}
+	Let $V$ be a $k$-vector space. The projectivization $\PP(V)$ is the quotient of the set $V\setminus \{0\}$ by the action of $k$ by scalar multiplication.
+	\todo{Does this have the structure of a scheme? What structure? It is claimed in homework 2 that this is isomorphic to $\PP^{n-1}$}.
+\end{definition}
+\begin{definition}
+	Consider the map of sets $\Pl: A \to \PP(\wedge^d V) = \PP^{{n \choose d} - 1}$ given by the assignment \[W \mapsto \PP(\wedge^d W) = [\wedge^d W].\] Note that $W$ is $d$-dimensional so $\PP(\wedge^d W)$ is a point.
+\end{definition}
+\todo{Type the rest of this}
+
+\section{The universal sub and quotient bundles}
+\todo{Type the rest of this}
+
+\section{Fine moduli spaces}
+
+The lecture notes by Victoria Hoskins on \emph{Moduli Problems and Invariant Theory} \cite[Chapter~2]{m15} define the terms \emph{naive moduli problem} and \emph{extended moduli problem}. Read that chapter.
+\begin{definition}
+	Let $\sh{M}: \catSch\opp \to \catSet$ be a functor for an extended moduli problem. Then a scheme $M/k$ representing $\sh{M}$ is called a \emph{fine moduli space}. The \emph{universal family} on $\sh{M}$ is the object $\sh{U}$ in $\sh{M}(M)$ corresponding to the identity on $M$.
+\end{definition}
+
+The Grassmanian $\Gr(d, V)$ is an example of a fine moduli space; we have seen that it represents the functor associating to a scheme the set of rank $d$ subbundles of $T \times V$. The universal family on $\Gr(d, V)$ is the universal subbundle $\sh{S}$ \footnote{We are being a bit loose with the base here, since with the Grassmanian we represent a functor on $k$-schemes.}.
+
+The following propositions are some spelled out category theory.
+\begin{proposition}
+	For any scheme $T \in \catSch\opp/k$ and $A \in \sh{M}(T)$ there exists a unique morphism $f: T \to M$ such that $A = \sh{M}(f)(\sh{U})$.
+\end{proposition}
+\begin{proof}
+	The element $A$ corresponds to a unique morphism $ f\in \Hom(T, M) \cong \sh{M}(T)$ because $M$ represents the functor $\sh{M}$. 
+	We have the commutative diagram
+\[\begin{tikzcd}
+	{\Hom(M, M)} & {\sh{M}(M)} \\
+	{\Hom(T, M)} & {\sh{M}(T)}
+	\arrow["\sim", tail reversed, from=1-1, to=1-2]
+	\arrow["{f \circ -}"', from=1-1, to=2-1]
+	\arrow["{\sh{M}(f)}", from=1-2, to=2-2]
+	\arrow["\sim"', tail reversed, from=2-1, to=2-2]
+\end{tikzcd}\]
+via the natural transformation $\Hom(-, M) \cong \sh{M}$. Now map the identity to from top left to bottom right.
+\end{proof}
+\begin{proposition}
+	A scheme $N/k$ is a fine moduli space for $\sh{M}$ if and only if it has a universal family (i.e. $V \in \sh{M}(N)$ such that for any scheme $T \in \catSch\opp/k$ and $A \in \sh{M}(T)$ there exists a unique morphism $f: T \to N$ such that $A = \sh{M}(f)(V)$).
+\end{proposition}
+\begin{proof}
+	By Yoneda's lemma the element $V$ gives a natural transformation $\alpha: \Hom(-, N) \to \sh{M}$ given by $\alpha_T: f \mapsto \sh{M}(f)(V)$. Each $\alpha_T$ is now an iso precisely when for each $k$-scheme $T$ and object $A \in \sh{M}(T)$ there is a unique morphism $f: T \to N$ such that $A = \sh{M}(f)(V)$: this is just what it means to invert $\alpha_T$. 
+\end{proof}
+
+\section{Quot schemes}
+\todo{Some words about generalizing the Grassmanian.}
+
+Fix a projective scheme $X/k$, a coherent sheaf $F$ on $X$, an ample invertible sheaf $\OO(1)$ on $X$, and a polynomial $P \in \QQ[m]$. 
+\begin{definition}
+	The $\Quot$ functor associated to $X, \sh{F}, \OO(1)$ and $P$ is the functor \[\underline{\Quot}_X^{\OO(1)}(\sh{F}, P): \catSch\opp/k \to \catSet\] defined by \[
+  	T \mapsto \{(E,q) \mid E \in \catCoh(X \times_k T) \text{ flat over } T
+	 ,  q: \operatorname{pr}_X^*F \twoheadrightarrow E, \forall t\in T: P_{\OO(1)|_t}(E_t) = P\}_{/\cong}
+  \] where $(E, q)$ is isomorphic to $(E', q')$ if there exists a commutative diagram 
+\[\begin{tikzcd}
+	{\operatorname{pr}_X^*F} & E \\
+	& {E'}.
+	\arrow["q", from=1-1, to=1-2]
+	\arrow["{q'}"', from=1-1, to=2-2]
+	\arrow["\cong", from=1-2, to=2-2]
+\end{tikzcd}\] Here the polynomial $P_{\OO(1)|_t}(E_t)$ is the Hilbert polynomial of $E_t$ (the pullback of $E$ to the fiber $X \times_k T|_t$) relative to $\OO(1)|_t$ (the pullback of $\OO_X(1)$ to the fiber $X \times_k T|_t$ by first pulling it back to $X\times_k T$).
+\end{definition}
+Note that the Hilbert polynomial is constant on the fibers by \cref{thm:flat-hilbert-constant}.
+We could remove the condition on the Hilbert polynomial to obtain a more intuitive-looking functor $\underline{\Quot}_X^{\OO(1)}(\sh{F})$. This functor is a coproduct of the $\Quot$ functors over $\QQ[m]$ and is `too big' of a functor to be representable. For the $\Quot$ functor of $P \in \QQ[m]$ we can solve the moduli problem with a fine moduli space. 
+
+\begin{theorem}[Grothendieck]
+	The functor $\underline{\Quot}_X^{\OO(1)}(\sh{F}, P)$ is representable by a projective $k$-scheme \[\Quot_X^{\OO(1)}(\sh{F}, P).\]
+\end{theorem}
+\begin{proof}
+	Will be the content of the next lecture. See also \cite[Theorem~8.43]{m15}. 
+\end{proof}
